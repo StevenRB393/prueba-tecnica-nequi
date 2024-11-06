@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: prueba-practica-backend
+
+  data:
+    mongodb:
+      uri:  mongodb+srv://invitado:invitado@cluster0.l0cc8.mongodb.net/franchises-api?retryWrites=true&w=majority
+      database: franchises-api
+      username: invitado
+      password: invitado
+      authentication-database: admin
