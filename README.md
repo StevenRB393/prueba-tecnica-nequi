@@ -53,9 +53,9 @@
 <p>Este proyecto utiliza <strong>MongoDB</strong> como sistema de gestión de bases de datos <strong>NoSQL.</strong> MongoDB es una base de datos orientada a documentos que almacena los datos en formato <strong>BSON</strong> (similar a JSON), lo que permite una gran flexibilidad y escalabilidad. En este caso, se utiliza <strong>MongoDB Atlas</strong> como proveedor de base de datos en la nube.</p>
 <h4 id="estructura-de-la-base-de-datos"><strong>Estructura de la Base de Datos</strong></h4>
 <ul>
-<li><strong>Franquicia</strong>: Contiene el nombre de la franquicia y un listado de sucursales asociadas a ella.</li>
-<li><strong>Sucursal</strong>: Cada sucursal tiene un nombre y un listado de productos disponibles.</li>
-<li><strong>Producto</strong>: Cada producto tiene un nombre y una cantidad de stock disponible en esa sucursal.</li>
+<li><strong>Franquicia</strong>: Contiene el id, el nombre de la franquicia y un listado de sucursales asociadas a ella.</li>
+<li><strong>Sucursal</strong>: Cada sucursal tiene su id,  un nombre y un listado de productos disponibles.</li>
+<li><strong>Producto</strong>: Cada producto tiene su id, un nombre y una cantidad de stock disponible en esa sucursal.</li>
 </ul>
 <p><a href="https://postimages.org/" target="_blank"><img src="https://i.postimg.cc/h47GvCqz/Captura-de-pantalla-2024-11-07-131347.png" border="0" alt="Captura-de-pantalla-2024-11-07-131347"></a></p>
 <p><strong>Colecciones en MongoDB</strong>:</p>
