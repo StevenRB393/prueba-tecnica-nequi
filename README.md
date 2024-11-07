@@ -200,7 +200,7 @@ public class ProductServiceImpl implements ProductService {
 &lt;/dependency&gt;
 </code></pre>
 <h2 id="uso-de-lombok">- Uso de Lombok</h2>
-<p>Lombok es una biblioteca que reduce el código repetitivo al generar automáticamente métodos comunes como getters, setters, constructores, y má</p>
+<p>Lombok es una biblioteca que reduce el código repetitivo al generar automáticamente métodos comunes como getters, setters, constructores, y más,</p>
 <p><strong>¿En qué beneficia?</strong> Mejorar la legibilidad y reducir el código boilerplate en el proyecto, simplificando el desarrollo y mantenimiento.</p>
 <pre><code>@AllArgsConstructor  
 @NoArgsConstructor  
@@ -284,6 +284,16 @@ public class FranchiseController {
                 })  
                 .defaultIfEmpty(ResponseEntity.notFound().build());  
     }
+</code></pre>
+<h2 id="creación-de-validadores">- Creación de validadores</h2>
+<p>La creación de validadores en una aplicación consiste en implementar lógica personalizada para verificar que los datos de entrada cumplen con los requisitos esperados antes de ser procesados por la aplicación.</p>
+<p><strong>¿En qué beneficia?</strong> Mejorar la integridad y calidad de los datos, asegurando que las entradas del usuario o las solicitudes externas sean válidas y consistentes antes de que interactúen con el sistema o la base de datos.</p>
+<pre><code>public static void validateProductId(String productId) {  
+  
+    if (productId == null || productId.isBlank()) {  
+        throw new BadRequestException("Product ID must not be null or empty");  
+    }  
+}
 </code></pre>
 <h2 id="configuración-externalizada-con-variables-de-entorno">- Configuración Externalizada con Variables de Entorno</h2>
 <p>La configuración externalizada con variables de entorno permite separar la configuración del código fuente, almacenando parámetros como credenciales y URLs en el entorno de ejecución.</p>
