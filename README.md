@@ -29,6 +29,12 @@
 |         |--resources/
 |            |--application.yml
 |
+|         |--test/
+|               |--java/
+|                     |--com.application.prueba/
+|                        |--controllers
+|                        |--services
+|
 |--.gitignore
 |--docker-compose.yml
 |--Dockerfile
