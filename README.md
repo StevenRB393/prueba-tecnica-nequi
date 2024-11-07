@@ -7,11 +7,6 @@
 <p>Este proyecto consiste en desarrollar una <strong>API de gestión de franquicias</strong>, permitiendo manejar una lista de franquicias, cada una con sus sucursales y productos. La API permitirá realizar operaciones CRUD sobre franquicias, sucursales y productos, además de consultas específicas sobre el stock de los productos por sucursal, buscar el producto con mas stock por sucursal para una franquicia puntal etc.</p>
 <h2 id="estructura-del-proyecto">Estructura del proyecto</h2>
 <pre><code>prueba-practica-backend-nequi/
-|
-|- .github/
-|   |-workflows
-|     |- main.yml
-|
 |--src/
 |   |--main/
 |         |--java/
@@ -159,91 +154,138 @@ cd prueba-tecnica-nequi
 <h2 id="arquitectura-en-capas">- Arquitectura en capas</h2>
 <p>La arquitectura en capas es un enfoque de organización del código que divide la aplicación en distintas capas, cada una responsable de un aspecto específico.</p>
 <p><strong>¿En qué beneficia?</strong> Mejorar la separación de responsabilidades, facilitando el mantenimiento y la escalabilidad de la aplicación.</p>
-<pre><code>public class AppointmentDTO {
-    private Long id;
-    private DoctorDTO doctor;
-    private PatientDTO patient;
-    private LocalDateTime date;
-    }
-</code></pre>
+<ul>
+<li><code>controllers/</code></li>
+<li><code>dtos/</code></li>
+<li><code>exceptions/</code></li>
+<li><code>mappers/</code></li>
+<li><code>models/</code></li>
+<li><code>repositories/</code></li>
+<li><code>services/</code></li>
+<li><code>validations/</code></li>
+<li><code>configs/</code></li>
+</ul>
 <h2 id="aplicación-principios-clean-code">- Aplicación principios Clean Code</h2>
 <p>La aplicación de los principios de <strong>Clean Code</strong> busca escribir código claro, legible y fácil de mantener, siguiendo buenas prácticas de desarrollo.</p>
 <p><strong>¿En qué beneficia?</strong> Mejorar la calidad del código, facilitando su comprensión, mantenimiento y evolución a largo plazo.</p>
-<pre><code>public class AppointmentDTO {
-    private Long id;
-    private DoctorDTO doctor;
-    private PatientDTO patient;
-    private LocalDateTime date;
+<pre><code>@Service  
+@RequiredArgsConstructor  
+public class ProductServiceImpl implements ProductService {  
+  
+    private final ProductRepository productRepository;  
+  
+    private final StoreRepository storeRepository;  
+  
+  @Override  
+  public Mono&lt;Product&gt; findProductById(String productId) {  
+  
+        ProductValidations.validateProductId(productId);  
+  
+        return productRepository.findById(productId);  
+    }  
+  
+  @Override  
+  public Flux&lt;Product&gt; findAllProducts() {  
+  
+        return productRepository.findAll();  
     }
 </code></pre>
 <h2 id="uso-de-swagger">- Uso de Swagger</h2>
 <p>Swagger es una herramienta que permite documentar, visualizar e interactuar con las API REST de manera sencilla y eficiente.</p>
 <p><strong>¿En qué beneficia?</strong> Facilitar la comprensión, pruebas y mantenimiento de las API, mejorando la comunicación entre desarrolladores y otros stakeholders.</p>
-<pre><code>public class AppointmentDTO {
-    private Long id;
-    private DoctorDTO doctor;
-    private PatientDTO patient;
-    private LocalDateTime date;
-    }
+<pre><code> &lt;dependency&gt;  
+ &lt;groupId&gt;org.springdoc&lt;/groupId&gt;  
+ &lt;artifactId&gt;springdoc-openapi-starter-webmvc-ui&lt;/artifactId&gt;  
+ &lt;version&gt;2.6.0&lt;/version&gt;  
+&lt;/dependency&gt;
 </code></pre>
 <h2 id="uso-de-lombok">- Uso de Lombok</h2>
 <p>Lombok es una biblioteca que reduce el código repetitivo al generar automáticamente métodos comunes como getters, setters, constructores, y má</p>
 <p><strong>¿En qué beneficia?</strong> Mejorar la legibilidad y reducir el código boilerplate en el proyecto, simplificando el desarrollo y mantenimiento.</p>
-<pre><code>public class AppointmentDTO {
-    private Long id;
-    private DoctorDTO doctor;
-    private PatientDTO patient;
-    private LocalDateTime date;
-    }
+<pre><code>   &lt;dependency&gt;  
+ &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;  
+ &lt;artifactId&gt;lombok-mapstruct-binding&lt;/artifactId&gt;  
+ &lt;version&gt;0.1.0&lt;/version&gt;  
+&lt;/dependency&gt;
 </code></pre>
 <h2 id="uso-de-dtos">- Uso de DTOs</h2>
 <p>Los DTOs (Data Transfer Objects) son objetos utilizados para transferir datos entre capas de una aplicación, generalmente entre la capa de presentación y la de servicio</p>
-<p><strong>¿En qué beneficia?</strong> Desacoplar las capas de la aplicación y optimizar el paso de datos, asegurando que solo se expongan los campos necesarios.<br>
-public class AppointmentDTO {<br>
-private Long id;<br>
-private DoctorDTO doctor;<br>
-private PatientDTO patient;<br>
-private LocalDateTime date;<br>
-}</p>
+<p><strong>¿En qué beneficia?</strong> Desacoplar las capas de la aplicación y optimizar el paso de datos, asegurando que solo se expongan los campos necesarios.</p>
+<pre><code>@AllArgsConstructor  
+@NoArgsConstructor  
+@Data  
+public class StoreDTO {  
+  
+    @NotNull(message = "Id cannot be null")  
+    private String idDTO;  
+  
+    @NotBlank(message = "Store name cannot be null")  
+    @Size(min = 2, max = 50, message = "Store name must be between 2 and 50 characters")  
+    @Indexed(unique = true)  
+    private String storeNameDTO;  
+  
+    @NotNull(message = "Product list cannot be null")  
+    @Size(min = 1, message = "There must be at least 1 product in the list")  
+    @Valid  
+    private List&lt;ProductDTO&gt; productDTOList;  
+    }
+</code></pre>
 <h2 id="uso-de-mapstruct">- Uso de MapStruct</h2>
 <p>MapStruct es una herramienta para la generación automática de mapeos entre objetos, facilitando la conversión entre DTOs y entidades sin escribir código manual.</p>
 <p><strong>¿En qué beneficia?</strong> Simplificar y optimizar la conversión de datos entre diferentes capas de la aplicación, mejorando la mantenibilidad y reduciendo errores.</p>
-<pre><code>public class AppointmentDTO {
-    private Long id;
-    private DoctorDTO doctor;
-    private PatientDTO patient;
-    private LocalDateTime date;
-    }
+<pre><code> &lt;dependency&gt;  
+ &lt;groupId&gt;org.mapstruct &lt;/groupId&gt;  
+ &lt;artifactId&gt;mapstruct&lt;/artifactId&gt;  
+ &lt;version&gt;1.5.5.Final&lt;/version&gt;  
+&lt;/dependency&gt;
 </code></pre>
 <h2 id="manejo-de-excepciones-centralizado">- Manejo de excepciones centralizado</h2>
 <p>El manejo de excepciones centralizado es una estrategia para capturar y gestionar errores de manera consistente en toda la aplicación, utilizando un solo punto de control.</p>
 <p><strong>¿En qué beneficia?</strong> Mejorar la gestión de errores, proporcionando respuestas estandarizadas y asegurando un flujo de control limpio y coherente en toda la aplicación.</p>
-<pre><code>public class AppointmentDTO {
-    private Long id;
-    private DoctorDTO doctor;
-    private PatientDTO patient;
-    private LocalDateTime date;
+<pre><code>@RestControllerAdvice  
+public class GlobalExceptionHandler {  
+  
+    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);  
+  
+    @ExceptionHandler(NotFoundException.class)  
+    public Mono&lt;ResponseEntity&lt;String&gt;&gt; handleNotFoundException(NotFoundException ex) {  
+        logger.error("NotFoundException: {}", ex.getMessage());  
+        return Mono.just(ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage()));  
     }
 </code></pre>
 <h2 id="logging-adecuado">- Logging Adecuado</h2>
 <p>El logging adecuado implica registrar información relevante sobre el funcionamiento de la aplicación, como errores, eventos importantes y datos de depuración, para facilitar el monitoreo y la resolución de problemas</p>
 <p><strong>¿En qué beneficia?</strong> Mejorar la visibilidad y el diagnóstico de la aplicación, permitiendo un análisis eficiente de su comportamiento y facilitando la identificación de errores y problemas en producción.</p>
-<pre><code>public class AppointmentDTO {
-    private Long id;
-    private DoctorDTO doctor;
-    private PatientDTO patient;
-    private LocalDateTime date;
+<pre><code>@RestController  
+@RequestMapping("api/franchises")  
+@RequiredArgsConstructor  
+@Tag(name = "Franchises")  
+public class FranchiseController {  
+  
+    private static final Logger logger = LoggerFactory.getLogger(FranchiseController.class);  
+  
+    private final FranchiseService franchiseService;  
+  
+    private final FranchiseMapper franchiseMapper;  
+  
+  
+    @GetMapping("/get/{franchiseId}")  
+    public Mono&lt;ResponseEntity&lt;FranchiseDTO&gt;&gt; getFranchiseById(@PathVariable String franchiseId) {  
+        logger.info("Request received to get franchise with ID: {}", franchiseId);  
+        return franchiseService.findFranchiseById(franchiseId)  
+                .map(franchise -&gt; {  
+                    logger.info("Franchise found: {}", franchiseId);  
+                    return ResponseEntity.ok(franchiseMapper.INSTANCE.franchiseToFranchiseDTO(franchise));  
+                })  
+                .defaultIfEmpty(ResponseEntity.notFound().build());  
     }
 </code></pre>
 <h2 id="configuración-externalizada-con-variables-de-entorno">- Configuración Externalizada con Variables de Entorno</h2>
 <p>La configuración externalizada con variables de entorno permite separar la configuración del código fuente, almacenando parámetros como credenciales y URLs en el entorno de ejecución.</p>
 <p><strong>¿En qué beneficia?</strong> Facilitar la gestión de la configuración en diferentes entornos (desarrollo, producción, etc.), mejorando la seguridad y la flexibilidad de la aplicación.</p>
-<pre><code>public class AppointmentDTO {
-    private Long id;
-    private DoctorDTO doctor;
-    private PatientDTO patient;
-    private LocalDateTime date;
-    }   
+<pre><code>username: ${MONGO_USERNAME}  
+password: ${MONGO_PASSWORD}  
+database: ${MONGO_DB}  
 </code></pre>
 <h1 id="¿cómo-se-puede-mejorar">¿Cómo se puede mejorar?</h1>
 <h2 id="desplegando-la-app-dockerizada-en-la-nube">Desplegando la app dockerizada en la nube</h2>
