@@ -50,12 +50,19 @@
 <li><code>validations/</code>: Clases o componentes encargados de realizar validaciones específicas en los métodos de los servicios</li>
 </ul>
 <h2 id="base-de-datos">Base de datos</h2>
-<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book<br>
-<a href="https://postimages.org/" target="_blank"><img src="https://i.postimg.cc/T3ZQbV23/Captura-de-pantalla-2024-11-07-023542.png" border="0" alt="Captura-de-pantalla-2024-11-07-023542"></a><br><a href="https://postimages.org/es/"></a><br></p>
+<p>Este proyecto utiliza <strong>MongoDB</strong> como sistema de gestión de bases de datos <strong>NoSQL.</strong> MongoDB es una base de datos orientada a documentos que almacena los datos en formato <strong>BSON</strong> (similar a JSON), lo que permite una gran flexibilidad y escalabilidad. En este caso, se utiliza <strong>MongoDB Atlas</strong> como proveedor de base de datos en la nube.</p>
+<h4 id="estructura-de-la-base-de-datos"><strong>Estructura de la Base de Datos</strong></h4>
 <ul>
-<li>Franquicias:</li>
-<li>Sucursales:</li>
-<li>Productos: dsds</li>
+<li><strong>Franquicia</strong>: Contiene el nombre de la franquicia y un listado de sucursales asociadas a ella.</li>
+<li><strong>Sucursal</strong>: Cada sucursal tiene un nombre y un listado de productos disponibles.</li>
+<li><strong>Producto</strong>: Cada producto tiene un nombre y una cantidad de stock disponible en esa sucursal.<br>
+<a href="https://postimages.org/" target="_blank"><img src="https://i.postimg.cc/h47GvCqz/Captura-de-pantalla-2024-11-07-131347.png" border="0" alt="Captura-de-pantalla-2024-11-07-131347"></a></li>
+</ul>
+<p><strong>Colecciones en MongoDB</strong>:</p>
+<ul>
+<li><code>franchises</code>: Colección que almacena la información de las franquicias.</li>
+<li><code>stores</code>: Colección que almacena las sucursales asociadas a cada franquicia.</li>
+<li><code>products</code>: Colección que almacena los productos disponibles en cada sucursal, junto con su cantidad de stock.</li>
 </ul>
 <h1 id="guía-de-instalación">Guía de instalación</h1>
 <h2 id="requisitos-previos">Requisitos previos:</h2>
