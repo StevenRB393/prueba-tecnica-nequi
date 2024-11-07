@@ -188,7 +188,7 @@ public class ProductServiceImpl implements ProductService {
   public Flux&lt;Product&gt; findAllProducts() {  
   
         return productRepository.findAll();  
-    }
+    }        
 </code></pre>
 <h2 id="uso-de-swagger">- Uso de Swagger</h2>
 <p>Swagger es una herramienta que permite documentar, visualizar e interactuar con las API REST de manera sencilla y eficiente.</p>
@@ -202,11 +202,9 @@ public class ProductServiceImpl implements ProductService {
 <h2 id="uso-de-lombok">- Uso de Lombok</h2>
 <p>Lombok es una biblioteca que reduce el código repetitivo al generar automáticamente métodos comunes como getters, setters, constructores, y má</p>
 <p><strong>¿En qué beneficia?</strong> Mejorar la legibilidad y reducir el código boilerplate en el proyecto, simplificando el desarrollo y mantenimiento.</p>
-<pre><code>   &lt;dependency&gt;  
- &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;  
- &lt;artifactId&gt;lombok-mapstruct-binding&lt;/artifactId&gt;  
- &lt;version&gt;0.1.0&lt;/version&gt;  
-&lt;/dependency&gt;
+<pre><code>@AllArgsConstructor  
+@NoArgsConstructor  
+@Data
 </code></pre>
 <h2 id="uso-de-dtos">- Uso de DTOs</h2>
 <p>Los DTOs (Data Transfer Objects) son objetos utilizados para transferir datos entre capas de una aplicación, generalmente entre la capa de presentación y la de servicio</p>
@@ -232,12 +230,18 @@ public class StoreDTO {
 </code></pre>
 <h2 id="uso-de-mapstruct">- Uso de MapStruct</h2>
 <p>MapStruct es una herramienta para la generación automática de mapeos entre objetos, facilitando la conversión entre DTOs y entidades sin escribir código manual.</p>
-<p><strong>¿En qué beneficia?</strong> Simplificar y optimizar la conversión de datos entre diferentes capas de la aplicación, mejorando la mantenibilidad y reduciendo errores.</p>
-<pre><code> &lt;dependency&gt;  
- &lt;groupId&gt;org.mapstruct &lt;/groupId&gt;  
- &lt;artifactId&gt;mapstruct&lt;/artifactId&gt;  
- &lt;version&gt;1.5.5.Final&lt;/version&gt;  
-&lt;/dependency&gt;
+<p><strong>¿En qué beneficia?</strong> Simplificar y optimizar la conversión de datos entre diferentes capas de la aplicación, mejorando la mantenibilidad y reduciendo errores.<br>
+@Mapper<br>
+public interface ProductMapper {</p>
+<pre><code>    ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);  
+  
+    @Mapping(source = "id", target = "idDTO")  
+    @Mapping(source = "productName", target = "productNameDTO")  
+    @Mapping(source = "stock", target = "stockDTO")  
+    ProductDTO productToProductDTO(Product product);  
+  
+  @InheritInverseConfiguration  
+  Product productDTOToProduct(ProductDTO productDTO);   
 </code></pre>
 <h2 id="manejo-de-excepciones-centralizado">- Manejo de excepciones centralizado</h2>
 <p>El manejo de excepciones centralizado es una estrategia para capturar y gestionar errores de manera consistente en toda la aplicación, utilizando un solo punto de control.</p>
