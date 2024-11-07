@@ -60,4 +60,12 @@
 <li><code>repositories/</code>: Interfaces de repositorio para el acceso a datos.</li>
 <li><code>services/</code>: Servicios que contienen la lógica de negocio</li>
 </ul>
+<h2 id="base-de-datos">Base de datos</h2>
+<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book<br>
+<a href="https://postimages.org/" target="_blank"><img src="https://i.postimg.cc/T3ZQbV23/Captura-de-pantalla-2024-11-07-023542.png" border="0" alt="Captura-de-pantalla-2024-11-07-023542"></a><br><a href="https://postimages.org/es/"></a><br></p>
+<ul>
+<li>Franquicias:</li>
+<li>Sucursales:</li>
+<li>Productos: dsds</li>
+</ul>
 
