@@ -68,4 +68,40 @@
 <li>Sucursales:</li>
 <li>Productos: dsds</li>
 </ul>
+<h1 id="guía-de-instalación">Guía de instalación:</h1>
+<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+<h1 id="buenas-prácticas-implementadas-en-el-proyecto">Buenas prácticas implementadas en el proyecto</h1>
+<h2 id="uso-de-dtos">- Uso de DTOs</h2>
+<p>sdasdasdasdasd<br>
+<strong>¿En qué beneficia?</strong> fddfsdfsdfsd</p>
+<pre><code>public class AppointmentDTO {
+    private Long id;
+    private DoctorDTO doctor;
+    private PatientDTO patient;
+    private LocalDateTime date;
+    }
+</code></pre>
+<h2 id="uso-de-loggers">Uso de Loggers</h2>
+<p>asdasdasdasdasdas</p>
+<h2 id="arquitectura-en-capas">Arquitectura en capas</h2>
+<p>dasdasdasdasdasd</p>
+<h2 id="manejo-de-excepciones-centralizado">Manejo de excepciones centralizado</h2>
+<p>sdfsdfsdfsdfsdfsdf<br>
+<strong>¿En qué beneficia?</strong> fddfsdfsdfsd</p>
+<pre><code>@RestControllerAdvice
+public class GlobalExceptionHandler {
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity&lt;ExceptionDTO&gt; handleNotFoundException(NotFoundException ex, WebRequest request) {
+        // ...
+    }
+    // ...
+}
+</code></pre>
+<h2 id="configuración-externalizada-con-variables-de-entorno">Configuración externalizada con variables de entorno</h2>
+<p>dasdasdasdasd<br>
+<strong>¿En qué beneficia?</strong> fddfsdfsdfsd</p>
+<pre><code>spring.datasource.url=${DATABASE_URL}
+spring.datasource.username=${DATABASE_USERNAME}
+spring.datasource.password=${DATABASE_PASSWORD}
+</code></pre>
 
