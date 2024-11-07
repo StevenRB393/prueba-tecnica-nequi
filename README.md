@@ -39,15 +39,15 @@
 </code></pre>
 <h2 id="componentes-principales">Componentes principales</h2>
 <ul>
-<li><code>configs/</code>: Configuraciones generales de la aplicación.</li>
 <li><code>controllers/</code>: Controladores REST que manejan las solicitudes HTTP.</li>
 <li><code>dtos/</code>: Objetos de Transferencia de Datos (DTOs) para la comunicación entre capas.</li>
 <li><code>exceptions/</code>: Manejo centralizado de excepciones.</li>
 <li><code>mappers/</code>: Componentes encargados de transformar objetos de una capa a otra (por ejemplo, convertir entidades a DTOs o viceversa).</li>
 <li><code>models/</code>: Clases que representan los objetos de dominio de la aplicación, mapeados a las colecciones de MongoDB.</li>
-<li><code>repositories/</code>: Interfaces de repositorio</li>
+<li><code>repositories/</code>: Interfaces de repositorio para el acceso a los datos.</li>
 <li><code>services/</code>: Servicios que contienen la lógica de negocio.</li>
-<li><code>validations/</code>: Clases o componentes encargados de realizar validaciones específicas en los métodos de los servicios</li>
+<li><code>validations/</code>: Clases o componentes encargados de realizar validaciones específicas en los métodos de los servicios.</li>
+<li><code>configs/</code>: Configuraciones generales de la aplicación.</li>
 </ul>
 <h2 id="base-de-datos">Base de datos</h2>
 <p>Este proyecto utiliza <strong>MongoDB</strong> como sistema de gestión de bases de datos <strong>NoSQL.</strong> MongoDB es una base de datos orientada a documentos que almacena los datos en formato <strong>BSON</strong> (similar a JSON), lo que permite una gran flexibilidad y escalabilidad. En este caso, se utiliza <strong>MongoDB Atlas</strong> como proveedor de base de datos en la nube.</p>
@@ -55,8 +55,13 @@
 <ul>
 <li><strong>Franquicia</strong>: Contiene el nombre de la franquicia y un listado de sucursales asociadas a ella.</li>
 <li><strong>Sucursal</strong>: Cada sucursal tiene un nombre y un listado de productos disponibles.</li>
-<li><strong>Producto</strong>: Cada producto tiene un nombre y una cantidad de stock disponible en esa sucursal.<br>
-<a href="https://postimages.org/" target="_blank"><img src="https://i.postimg.cc/h47GvCqz/Captura-de-pantalla-2024-11-07-131347.png" border="0" alt="Captura-de-pantalla-2024-11-07-131347"></a></li>
+<li><strong>Producto</strong>: Cada producto tiene un nombre y una cantidad de stock disponible en esa sucursal.</li>
+</ul>
+<p><a href="https://postimages.org/" target="_blank"><img src="https://i.postimg.cc/h47GvCqz/Captura-de-pantalla-2024-11-07-131347.png" border="0" alt="Captura-de-pantalla-2024-11-07-131347"></a></p>
+<p><strong>Asociaciones unidireccionales</strong></p>
+<ul>
+<li>La asociación entre <strong>Franchise</strong> y <strong>Store</strong> es unidireccional, donde Franchise puede acceder a Store, pero no viceversa.</li>
+<li>La asociación entre <strong>Store</strong> y <strong>Product</strong> también es unidireccional, donde Store puede acceder a Product, pero no al revés.</li>
 </ul>
 <p><strong>Colecciones en MongoDB</strong>:</p>
 <ul>
