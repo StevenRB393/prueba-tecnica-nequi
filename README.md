@@ -58,16 +58,16 @@
 <li><strong>Producto</strong>: Cada producto tiene un nombre y una cantidad de stock disponible en esa sucursal.</li>
 </ul>
 <p><a href="https://postimages.org/" target="_blank"><img src="https://i.postimg.cc/h47GvCqz/Captura-de-pantalla-2024-11-07-131347.png" border="0" alt="Captura-de-pantalla-2024-11-07-131347"></a></p>
-<p><strong>Asociaciones unidireccionales</strong></p>
-<ul>
-<li>La asociación entre <strong>Franchise</strong> y <strong>Store</strong> es unidireccional, donde Franchise puede acceder a Store, pero no viceversa.</li>
-<li>La asociación entre <strong>Store</strong> y <strong>Product</strong> también es unidireccional, donde Store puede acceder a Product, pero no al revés.</li>
-</ul>
 <p><strong>Colecciones en MongoDB</strong>:</p>
 <ul>
 <li><code>franchises</code>: Colección que almacena la información de las franquicias.</li>
 <li><code>stores</code>: Colección que almacena las sucursales asociadas a cada franquicia.</li>
 <li><code>products</code>: Colección que almacena los productos disponibles en cada sucursal, junto con su cantidad de stock.</li>
+</ul>
+<p><strong>Asociaciones unidireccionales</strong></p>
+<ul>
+<li>La asociación entre <strong>Franchise</strong> y <strong>Store</strong> es unidireccional, donde Franchise puede acceder a Store, pero no viceversa.</li>
+<li>La asociación entre <strong>Store</strong> y <strong>Product</strong> también es unidireccional, donde Store puede acceder a Product, pero no al revés.</li>
 </ul>
 <h1 id="guía-de-instalación">Guía de instalación</h1>
 <h2 id="requisitos-previos">Requisitos previos:</h2>
