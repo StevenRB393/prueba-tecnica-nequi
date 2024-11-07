@@ -230,10 +230,11 @@ public class StoreDTO {
 </code></pre>
 <h2 id="uso-de-mapstruct">- Uso de MapStruct</h2>
 <p>MapStruct es una herramienta para la generación automática de mapeos entre objetos, facilitando la conversión entre DTOs y entidades sin escribir código manual.</p>
-<p><strong>¿En qué beneficia?</strong> Simplificar y optimizar la conversión de datos entre diferentes capas de la aplicación, mejorando la mantenibilidad y reduciendo errores.<br>
-@Mapper<br>
-public interface ProductMapper {</p>
-<pre><code>    ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);  
+<p><strong>¿En qué beneficia?</strong> Simplificar y optimizar la conversión de datos entre diferentes capas de la aplicación, mejorando la mantenibilidad y reduciendo errores.</p>
+<pre><code>@Mapper  
+public interface ProductMapper {  
+  
+    ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);  
   
     @Mapping(source = "id", target = "idDTO")  
     @Mapping(source = "productName", target = "productNameDTO")  
