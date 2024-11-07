@@ -28,7 +28,6 @@ public class StoreController {
 
     private final StoreMapper storeMapper;
 
-    //FUNCIONA
     @GetMapping("/get/{storeId}")
     public Mono<ResponseEntity<StoreDTO>> getStoreById(@PathVariable String storeId) {
         logger.info("Request received to get store with ID: {}", storeId);
@@ -40,7 +39,6 @@ public class StoreController {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
-    //FUNCIONA
     @GetMapping("/getAll")
     public Flux<ResponseEntity<StoreDTO>> getAllStores() {
         logger.info("Request received to get all stores");
@@ -52,7 +50,6 @@ public class StoreController {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
-    //FUNCIONA
     @PostMapping("/save")
     public Mono<ResponseEntity<StoreDTO>> createStore(@RequestBody StoreDTO storeDTO) {
         logger.info("Request received to save a new store");
@@ -65,7 +62,6 @@ public class StoreController {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
-    //FUNCIONA
     @PostMapping("/id/{storeId}/products")
     public Mono<ResponseEntity<StoreDTO>> addProductToStore(@PathVariable String storeId, @RequestBody ProductDTO productDTO) {
         logger.info("Request received to add a product to store with ID: {}", storeId);
@@ -77,7 +73,6 @@ public class StoreController {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
-    //FUNCIONA PERFECTO
     @DeleteMapping("/store/{storeId}/product/{productId}")
     public Mono<ResponseEntity<StoreDTO>> deleteProductFromStore(@PathVariable String storeId, @PathVariable String productId) {
         logger.info("Request received to delete product with ID: {} from store with ID: {}", productId, storeId);
@@ -89,7 +84,6 @@ public class StoreController {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
-    //FUNCIONA (perfecto)
     @PutMapping("/update/{storeId}")
     public Mono<ResponseEntity<StoreDTO>> updateStoreName(@PathVariable String storeId, @RequestBody NewNameDTO newNameDTO) {
         logger.info("Request received to update store name for ID: {}", storeId);
@@ -101,8 +95,6 @@ public class StoreController {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
-
-    //FUNCIONA
     @DeleteMapping("delete/{storeId}")
     public Mono<ResponseEntity<Void>> deleteStoreById(@PathVariable String storeId) {
         logger.info("Request received to delete store with ID: {}", storeId);

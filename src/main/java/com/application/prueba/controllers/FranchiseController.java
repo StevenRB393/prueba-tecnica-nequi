@@ -13,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
 import java.util.Collections;
 import java.util.List;
 import org.slf4j.Logger;
@@ -32,7 +31,7 @@ public class FranchiseController {
     private final FranchiseMapper franchiseMapper;
 
 
-    @GetMapping("/get/{franchiseId}")
+    @GetMapping("/{franchiseId}")
     public Mono<ResponseEntity<FranchiseDTO>> getFranchiseById(@PathVariable String franchiseId) {
         logger.info("Request received to get franchise with ID: {}", franchiseId);
         return franchiseService.findFranchiseById(franchiseId)
@@ -44,7 +43,7 @@ public class FranchiseController {
     }
 
 
-    @GetMapping("/getAll")
+    @GetMapping
     public Flux<ResponseEntity<FranchiseDTO>> getAllFranchises() {
         logger.info("Request received to get all franchises");
         return franchiseService.findAllFranchises()
@@ -56,7 +55,7 @@ public class FranchiseController {
     }
 
 
-    @GetMapping("/{franchiseId}/products-most-stock")
+    @GetMapping("/{franchiseId}/products/most-stock")
     public Mono<ResponseEntity<List<ProductWithScoreDTO>>> getProductWithMostStockByStore(@PathVariable String franchiseId) {
         logger.info("Request received to get products with most stock for franchise ID: {}", franchiseId);
 
@@ -74,7 +73,7 @@ public class FranchiseController {
 
 
 
-    @PostMapping("/save")
+    @PostMapping
     public Mono<ResponseEntity<FranchiseDTO>> saveFranchise(@RequestBody FranchiseDTO franchiseDTO) {
         logger.info("Request received to save a new franchise");
         return franchiseService.saveFranchise(franchiseDTO)
@@ -98,7 +97,7 @@ public class FranchiseController {
     }
 
 
-    @PutMapping("/update/{franchiseId}")
+    @PutMapping("/{franchiseId}")
     public Mono<ResponseEntity<Franchise>> updateFranchiseName(@PathVariable String franchiseId, @RequestBody NewNameDTO newNameDTO) {
         logger.info("Request received to update franchise name for ID: {}", franchiseId);
         return franchiseService.updateFranchiseName(franchiseId, newNameDTO)
@@ -110,7 +109,7 @@ public class FranchiseController {
     }
 
 
-    @DeleteMapping("/delete/{franchiseId}")
+    @DeleteMapping("{/franchiseId}")
     public Mono<ResponseEntity<Void>> deleteFranchiseById(@PathVariable String franchiseId) {
         logger.info("Request received to delete franchise with ID: {}", franchiseId);
         return franchiseService.deleteFranchiseById(franchiseId)
