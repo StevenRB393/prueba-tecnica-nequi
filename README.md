@@ -156,9 +156,9 @@ cd prueba-tecnica-nequi
 <h2 id="paso-6-probar-la-api">Paso #6: Probar la API</h2>
 <p>Ahora que ya está todo configurado y verificado de que funciona bien, prueba los endpoints de cada una de las colecciones de la base de datos.</p>
 <h1 id="buenas-prácticas-implementadas-en-el-proyecto">Buenas prácticas implementadas en el proyecto</h1>
-<h2 id="uso-de-dtos">- Uso de DTOs</h2>
-<p>sdasdasdasdasd<br>
-<strong>¿En qué beneficia?</strong> fddfsdfsdfsd</p>
+<h2 id="arquitectura-en-capas">- Arquitectura en capas</h2>
+<p>La arquitectura en capas es un enfoque de organización del código que divide la aplicación en distintas capas, cada una responsable de un aspecto específico.</p>
+<p><strong>¿En qué beneficia?</strong> Mejorar la separación de responsabilidades, facilitando el mantenimiento y la escalabilidad de la aplicación.</p>
 <pre><code>public class AppointmentDTO {
     private Long id;
     private DoctorDTO doctor;
@@ -166,27 +166,90 @@ cd prueba-tecnica-nequi
     private LocalDateTime date;
     }
 </code></pre>
-<h2 id="uso-de-loggers">Uso de Loggers</h2>
-<p>asdasdasdasdasdas</p>
-<h2 id="arquitectura-en-capas">Arquitectura en capas</h2>
-<p>dasdasdasdasdasd</p>
-<h2 id="manejo-de-excepciones-centralizado">Manejo de excepciones centralizado</h2>
-<p>sdfsdfsdfsdfsdfsdf<br>
-<strong>¿En qué beneficia?</strong> fddfsdfsdfsd</p>
-<pre><code>@RestControllerAdvice
-public class GlobalExceptionHandler {
-    @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity&lt;ExceptionDTO&gt; handleNotFoundException(NotFoundException ex, WebRequest request) {
-        // ...
+<h2 id="aplicación-principios-clean-code">- Aplicación principios Clean Code</h2>
+<p>La aplicación de los principios de <strong>Clean Code</strong> busca escribir código claro, legible y fácil de mantener, siguiendo buenas prácticas de desarrollo.</p>
+<p><strong>¿En qué beneficia?</strong> Mejorar la calidad del código, facilitando su comprensión, mantenimiento y evolución a largo plazo.</p>
+<pre><code>public class AppointmentDTO {
+    private Long id;
+    private DoctorDTO doctor;
+    private PatientDTO patient;
+    private LocalDateTime date;
     }
-    // ...
-}
 </code></pre>
-<h2 id="configuración-externalizada-con-variables-de-entorno">Configuración externalizada con variables de entorno</h2>
-<p>dasdasdasdasd<br>
-<strong>¿En qué beneficia?</strong> fddfsdfsdfsd</p>
-<pre><code>spring.datasource.url=${DATABASE_URL}
-spring.datasource.username=${DATABASE_USERNAME}
-spring.datasource.password=${DATABASE_PASSWORD}
+<h2 id="uso-de-swagger">- Uso de Swagger</h2>
+<p>Swagger es una herramienta que permite documentar, visualizar e interactuar con las API REST de manera sencilla y eficiente.</p>
+<p><strong>¿En qué beneficia?</strong> Facilitar la comprensión, pruebas y mantenimiento de las API, mejorando la comunicación entre desarrolladores y otros stakeholders.</p>
+<pre><code>public class AppointmentDTO {
+    private Long id;
+    private DoctorDTO doctor;
+    private PatientDTO patient;
+    private LocalDateTime date;
+    }
 </code></pre>
+<h2 id="uso-de-lombok">- Uso de Lombok</h2>
+<p>Lombok es una biblioteca que reduce el código repetitivo al generar automáticamente métodos comunes como getters, setters, constructores, y má</p>
+<p><strong>¿En qué beneficia?</strong> Mejorar la legibilidad y reducir el código boilerplate en el proyecto, simplificando el desarrollo y mantenimiento.</p>
+<pre><code>public class AppointmentDTO {
+    private Long id;
+    private DoctorDTO doctor;
+    private PatientDTO patient;
+    private LocalDateTime date;
+    }
+</code></pre>
+<h2 id="uso-de-dtos">- Uso de DTOs</h2>
+<p>Los DTOs (Data Transfer Objects) son objetos utilizados para transferir datos entre capas de una aplicación, generalmente entre la capa de presentación y la de servicio</p>
+<p><strong>¿En qué beneficia?</strong> Desacoplar las capas de la aplicación y optimizar el paso de datos, asegurando que solo se expongan los campos necesarios.<br>
+public class AppointmentDTO {<br>
+private Long id;<br>
+private DoctorDTO doctor;<br>
+private PatientDTO patient;<br>
+private LocalDateTime date;<br>
+}</p>
+<h2 id="uso-de-mapstruct">- Uso de MapStruct</h2>
+<p>MapStruct es una herramienta para la generación automática de mapeos entre objetos, facilitando la conversión entre DTOs y entidades sin escribir código manual.</p>
+<p><strong>¿En qué beneficia?</strong> Simplificar y optimizar la conversión de datos entre diferentes capas de la aplicación, mejorando la mantenibilidad y reduciendo errores.</p>
+<pre><code>public class AppointmentDTO {
+    private Long id;
+    private DoctorDTO doctor;
+    private PatientDTO patient;
+    private LocalDateTime date;
+    }
+</code></pre>
+<h2 id="manejo-de-excepciones-centralizado">- Manejo de excepciones centralizado</h2>
+<p>El manejo de excepciones centralizado es una estrategia para capturar y gestionar errores de manera consistente en toda la aplicación, utilizando un solo punto de control.</p>
+<p><strong>¿En qué beneficia?</strong> Mejorar la gestión de errores, proporcionando respuestas estandarizadas y asegurando un flujo de control limpio y coherente en toda la aplicación.</p>
+<pre><code>public class AppointmentDTO {
+    private Long id;
+    private DoctorDTO doctor;
+    private PatientDTO patient;
+    private LocalDateTime date;
+    }
+</code></pre>
+<h2 id="logging-adecuado">- Logging Adecuado</h2>
+<p>El logging adecuado implica registrar información relevante sobre el funcionamiento de la aplicación, como errores, eventos importantes y datos de depuración, para facilitar el monitoreo y la resolución de problemas</p>
+<p><strong>¿En qué beneficia?</strong> Mejorar la visibilidad y el diagnóstico de la aplicación, permitiendo un análisis eficiente de su comportamiento y facilitando la identificación de errores y problemas en producción.</p>
+<pre><code>public class AppointmentDTO {
+    private Long id;
+    private DoctorDTO doctor;
+    private PatientDTO patient;
+    private LocalDateTime date;
+    }
+</code></pre>
+<h2 id="configuración-externalizada-con-variables-de-entorno">- Configuración Externalizada con Variables de Entorno</h2>
+<p>La configuración externalizada con variables de entorno permite separar la configuración del código fuente, almacenando parámetros como credenciales y URLs en el entorno de ejecución.</p>
+<p><strong>¿En qué beneficia?</strong> Facilitar la gestión de la configuración en diferentes entornos (desarrollo, producción, etc.), mejorando la seguridad y la flexibilidad de la aplicación.</p>
+<pre><code>public class AppointmentDTO {
+    private Long id;
+    private DoctorDTO doctor;
+    private PatientDTO patient;
+    private LocalDateTime date;
+    }   
+</code></pre>
+<h1 id="¿cómo-se-puede-mejorar">¿Cómo se puede mejorar?</h1>
+<h2 id="desplegando-la-app-dockerizada-en-la-nube">Desplegando la app dockerizada en la nube</h2>
+<p>Se podría haber desplegado la aplicación dockerizada en la nube, con los servicios de AWS (que de hecho lo intenté) pero algunos problemas muy particulares me impidieron descargar el docker-compose directamente desde la instancia de EC2, y un problema con un archivo binario de AWS cuanto lo intenté conectar por medio de ECS con Fargate impidieron el despliegue en la nube.</p>
+<p>Perfeccionaré ese tema de los servicios de AWS, de los cuales ya tengo experiencia, para que no vuelvan a ocurrir y así entregar una mejor solución cuanto antes!</p>
+<h2 id="creación-de-pipeline-que-automatice-el-proceso-cicd-completo">Creación de pipeline que automatice el proceso (CI/CD) completo</h2>
+<p>Se podría haber utilizado un pipeline que automatice todo este proceso, desde que el desarrollador sube el código, hasta que este sale a producción, pasando por distintos procesos rigurosos de compilación, análisis y ejecución, utilizando herramientas como SonarQube, Jacoco, servicios de AWS y mucho más.</p>
+<p>Es un tema que me encantaría aprender por lo útil que es dentro de la industria, y por lo que puedes aportar como desarrollador con conocimiento un poco mas orientado al DevOps. Ya mismo me pondré con ello!</p>
 
