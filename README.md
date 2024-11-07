@@ -200,7 +200,7 @@ public class ProductServiceImpl implements ProductService {
 &lt;/dependency&gt;
 </code></pre>
 <h2 id="uso-de-lombok">- Uso de Lombok</h2>
-<p>Lombok es una biblioteca que reduce el código repetitivo al generar automáticamente métodos comunes como getters, setters, constructores, y más,</p>
+<p>Lombok es una biblioteca que reduce el código repetitivo al generar automáticamente métodos comunes como getters, setters, constructores, y más.</p>
 <p><strong>¿En qué beneficia?</strong> Mejorar la legibilidad y reducir el código boilerplate en el proyecto, simplificando el desarrollo y mantenimiento.</p>
 <pre><code>@AllArgsConstructor  
 @NoArgsConstructor  
