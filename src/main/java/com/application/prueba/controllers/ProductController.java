@@ -27,8 +27,7 @@ public class ProductController {
 
     private final ProductMapper productMapper;
 
-    //BIEN
-    @GetMapping("/get/{productId}")
+    @GetMapping("/{productId}")
     public Mono<ResponseEntity<ProductDTO>> getProductById(@PathVariable String productId) {
         logger.info("Request received to get product with ID: {}", productId);
         return productService.findProductById(productId)
@@ -40,8 +39,7 @@ public class ProductController {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
-    //BIEN
-    @GetMapping("/getAll")
+    @GetMapping
     public Flux<ResponseEntity<ProductDTO>> getAllProducts() {
         logger.info("Request received to get all products");
         return productService.findAllProducts()
@@ -52,8 +50,7 @@ public class ProductController {
                 });
     }
 
-    //BIEN
-    @PostMapping("/save")
+    @PostMapping
     public Mono<ResponseEntity<ProductDTO>> save(@RequestBody ProductDTO productDTO) {
         logger.info("Request received to save a new product");
         return productService.saveProduct(productDTO)
@@ -64,8 +61,7 @@ public class ProductController {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
-    //BIEN
-    @PutMapping("/stock/{productId}")
+    @PutMapping("/{productId}/stock")
     public Mono<ResponseEntity<ProductDTO>> updateStock(@PathVariable String productId, @RequestBody NewStockDTO newStockDTO) {
         logger.info("Request received to update stock for product ID: {}", productId);
         return productService.modifyProductStock(productId, newStockDTO)
@@ -76,8 +72,7 @@ public class ProductController {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
-    //BIEN
-    @PutMapping("/update/{productId}")
+    @PutMapping("/{productId}")
     public Mono<ResponseEntity<ProductDTO>> updateProductName(@PathVariable String productId, @RequestBody NewNameDTO newNameDTO) {
         logger.info("Request received to update product name for ID: {}", productId);
         return productService.updateProductName(productId, newNameDTO)
@@ -88,8 +83,7 @@ public class ProductController {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
-    //BIEN
-    @DeleteMapping("/delete/{productId}")
+    @DeleteMapping("/{productId}")
     public Mono<ResponseEntity<Void>> deleteProduct(@PathVariable String productId) {
         logger.info("Request received to delete product with ID: {}", productId);
         return productService.deleteProductById(productId)
