@@ -109,7 +109,7 @@ public class FranchiseController {
     }
 
 
-    @DeleteMapping("{franchiseId}")
+    @DeleteMapping("{   franchiseId}")
     public Mono<ResponseEntity<Void>> deleteFranchiseById(@PathVariable String franchiseId) {
         logger.info("Request received to delete franchise with ID: {}", franchiseId);
         return franchiseService.deleteFranchiseById(franchiseId)
