@@ -4,48 +4,38 @@
 ---
 
 <h1 id="prueba-técnica---api-franquicias">Prueba técnica - API Franquicias</h1>
-<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+<p>Este proyecto consiste en desarrollar una <strong>API de gestión de franquicias</strong>, permitiendo manejar una lista de franquicias, cada una con sus sucursales y productos. La API permitirá realizar operaciones CRUD sobre franquicias, sucursales y productos, además de consultas específicas sobre el stock de los productos por sucursal, buscar el producto con mas stock por sucursal para una franquicia puntal etc.</p>
 <h2 id="estructura-del-proyecto">Estructura del proyecto</h2>
-<pre><code>
-    medical-hour-management/
-    │
-    ├── .github/
-    │   └── workflows/
-    │       └── main.yml
-    │
-    ├── src/
-    │   └── main/
-    │      ├── java/com/medicalhourmanagement/
-    │      │   ├── configs/
-    │      │   ├── controllers/
-    │      │   ├── dtos/
-    │      │   │   ├── request/
-    │      │   │   └── response/
-    │      │   ├── entities/
-    │      │   ├── exceptions/
-    │      │   ├── repositories/
-    │      │   ├── security/
-    │      │   │   ├── filter/
-    │      │   │   └── service/
-    │      │   ├── services/
-    │      │   │   └── impl/
-    │      │   ├── utils/
-    │      │   │   ├── constant/
-    │      │   │   ├── enums/
-    │      │   │   └── validator/
-    │      │   └── MedicalHourManagementApplication.java
-    │      │
-    │      └── resources/
-    │          ├── application.properties
-    │          ├── application-dev.properties
-    │          ├── application-prod.properties
-    │   
-    ├── .gitignore
-    ├── mvnw
-    ├── mvnw.cmd
-    ├── pom.xml
-    └── README.md
-
+<pre><code>prueba-practica-backend-nequi/
+|
+|- .github/
+|   |-workflows
+|     |- main.yml
+|
+|--src/
+|   |--main/
+|         |--java/
+|               |--com.appication.prueba/
+|				   |--configs
+|                  |--controllers         
+|                  |--dtos
+|                  |--exceptions
+|                  |--mappers
+|                  |--models
+|                  |--repositories
+|                  |--services              
+|                  |--utils
+|
+|         |--resources/
+|            |--application.yml
+|
+|--.gitignore
+|--docker-compose.yml
+|--Dockerfile
+|--mvnw
+|--mvnw.cmd
+|--pom.xml
+|--README.md
 </code></pre>
 <h2 id="componentes-principales">Componentes principales</h2>
 <ul>
