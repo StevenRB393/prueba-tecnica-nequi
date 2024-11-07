@@ -6,6 +6,7 @@ import com.application.prueba.dtos.ProductDTO;
 import com.application.prueba.mappers.ProductMapper;
 import com.application.prueba.services.ProductService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,7 +52,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public Mono<ResponseEntity<ProductDTO>> save(@RequestBody ProductDTO productDTO) {
+    public Mono<ResponseEntity<ProductDTO>> save(@Valid @RequestBody ProductDTO productDTO) {
         logger.info("Request received to save a new product");
         return productService.saveProduct(productDTO)
                 .map(savedProductDTO -> {
@@ -62,7 +63,7 @@ public class ProductController {
     }
 
     @PutMapping("/{productId}/stock")
-    public Mono<ResponseEntity<ProductDTO>> updateStock(@PathVariable String productId, @RequestBody NewStockDTO newStockDTO) {
+    public Mono<ResponseEntity<ProductDTO>> updateStock(@PathVariable String productId, @Valid @RequestBody NewStockDTO newStockDTO) {
         logger.info("Request received to update stock for product ID: {}", productId);
         return productService.modifyProductStock(productId, newStockDTO)
                 .map(updatedStock -> {
@@ -73,7 +74,7 @@ public class ProductController {
     }
 
     @PutMapping("/{productId}")
-    public Mono<ResponseEntity<ProductDTO>> updateProductName(@PathVariable String productId, @RequestBody NewNameDTO newNameDTO) {
+    public Mono<ResponseEntity<ProductDTO>> updateProductName(@PathVariable String productId, @Valid @RequestBody NewNameDTO newNameDTO) {
         logger.info("Request received to update product name for ID: {}", productId);
         return productService.updateProductName(productId, newNameDTO)
                 .map(updatedName -> {

@@ -8,6 +8,7 @@ import com.application.prueba.entities.Franchise;
 import com.application.prueba.mappers.FranchiseMapper;
 import com.application.prueba.services.FranchiseService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -74,7 +75,7 @@ public class FranchiseController {
 
 
     @PostMapping
-    public Mono<ResponseEntity<FranchiseDTO>> saveFranchise(@RequestBody FranchiseDTO franchiseDTO) {
+    public Mono<ResponseEntity<FranchiseDTO>> saveFranchise(@Valid @RequestBody FranchiseDTO franchiseDTO) {
         logger.info("Request received to save a new franchise");
         return franchiseService.saveFranchise(franchiseDTO)
                 .map(savedFranchise -> {
@@ -86,7 +87,7 @@ public class FranchiseController {
 
 
     @PostMapping("/{franchiseId}/stores")
-    public Mono<ResponseEntity<FranchiseDTO>> addStoreToFranchise(@PathVariable String franchiseId, @RequestBody StoreDTO storeDTO) {
+    public Mono<ResponseEntity<FranchiseDTO>> addStoreToFranchise(@PathVariable String franchiseId, @Valid @RequestBody StoreDTO storeDTO) {
         logger.info("Request received to add a store to franchise ID: {}", franchiseId);
         return franchiseService.saveStoreByFranchise(franchiseId, storeDTO)
                 .map(franchise -> {
@@ -98,7 +99,7 @@ public class FranchiseController {
 
 
     @PutMapping("/{franchiseId}")
-    public Mono<ResponseEntity<Franchise>> updateFranchiseName(@PathVariable String franchiseId, @RequestBody NewNameDTO newNameDTO) {
+    public Mono<ResponseEntity<Franchise>> updateFranchiseName(@PathVariable String franchiseId, @Valid @RequestBody NewNameDTO newNameDTO) {
         logger.info("Request received to update franchise name for ID: {}", franchiseId);
         return franchiseService.updateFranchiseName(franchiseId, newNameDTO)
                 .map(updatedFranchise -> {

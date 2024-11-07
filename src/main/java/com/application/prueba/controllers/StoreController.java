@@ -7,6 +7,7 @@ import com.application.prueba.entities.Store;
 import com.application.prueba.mappers.StoreMapper;
 import com.application.prueba.services.StoreService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,7 +52,7 @@ public class StoreController {
     }
 
     @PostMapping
-    public Mono<ResponseEntity<StoreDTO>> createStore(@RequestBody StoreDTO storeDTO) {
+    public Mono<ResponseEntity<StoreDTO>> createStore(@Valid  @RequestBody StoreDTO storeDTO) {
         logger.info("Request received to save a new store");
         Store store = storeMapper.storeDTOToStore(storeDTO);
         return storeService.saveStore(storeDTO)
@@ -63,7 +64,7 @@ public class StoreController {
     }
 
     @PostMapping("/{storeId}/products")
-    public Mono<ResponseEntity<StoreDTO>> addProductToStore(@PathVariable String storeId, @RequestBody ProductDTO productDTO) {
+    public Mono<ResponseEntity<StoreDTO>> addProductToStore(@PathVariable String storeId, @Valid @RequestBody ProductDTO productDTO) {
         logger.info("Request received to add a product to store with ID: {}", storeId);
         return storeService.saveProductToStore(storeId, productDTO)
                 .map(store -> {
@@ -85,7 +86,7 @@ public class StoreController {
     }
 
     @PutMapping("/{storeId}")
-    public Mono<ResponseEntity<StoreDTO>> updateStoreName(@PathVariable String storeId, @RequestBody NewNameDTO newNameDTO) {
+    public Mono<ResponseEntity<StoreDTO>> updateStoreName(@PathVariable String storeId, @Valid @RequestBody NewNameDTO newNameDTO) {
         logger.info("Request received to update store name for ID: {}", storeId);
         return storeService.updateStoreName(storeId, newNameDTO)
                 .map(store -> {
