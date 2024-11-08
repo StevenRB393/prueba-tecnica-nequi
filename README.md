@@ -163,7 +163,7 @@ cd prueba-tecnica-nequi
 <li><code>models/</code></li>
 <li><code>repositories/</code></li>
 <li><code>services/</code></li>
-<li><code>validations/</code></li>
+<li><code>validators/</code></li>
 <li><code>configs/</code></li>
 </ul>
 <h2 id="aplicación-principios-clean-code">- Aplicación principios Clean Code</h2>
