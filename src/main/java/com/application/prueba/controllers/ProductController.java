@@ -30,63 +30,83 @@ public class ProductController {
 
     @GetMapping("/{productId}")
     public Mono<ResponseEntity<ProductDTO>> getProductById(@PathVariable String productId) {
+
         logger.info("Request received to get product with ID: {}", productId);
+
         return productService.findProductById(productId)
                 .map(product -> {
                     logger.info("Product found with ID: {}", productId);
                     ProductDTO productDTO = productMapper.productToProductDTO(product);
+
                     return ResponseEntity.ok(productDTO);
                 })
+
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
     @GetMapping
     public Flux<ResponseEntity<ProductDTO>> getAllProducts() {
+
         logger.info("Request received to get all products");
+
         return productService.findAllProducts()
                 .map(product -> {
                     logger.info("Product found with ID: {}", product.getId());
                     ProductDTO responseDTO = productMapper.productToProductDTO(product);
+
                     return ResponseEntity.ok(responseDTO);
                 });
     }
 
     @PostMapping
     public Mono<ResponseEntity<ProductDTO>> save(@Valid @RequestBody ProductDTO productDTO) {
+
         logger.info("Request received to save a new product");
         return productService.saveProduct(productDTO)
                 .map(savedProductDTO -> {
                     logger.info("Product saved with ID: {}", savedProductDTO.getIdDTO());
+
                     return ResponseEntity.status(HttpStatus.CREATED).body(savedProductDTO);
                 })
+
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{productId}/stock")
     public Mono<ResponseEntity<ProductDTO>> updateStock(@PathVariable String productId, @Valid @RequestBody NewStockDTO newStockDTO) {
+
         logger.info("Request received to update stock for product ID: {}", productId);
+
         return productService.modifyProductStock(productId, newStockDTO)
                 .map(updatedStock -> {
                     logger.info("Stock updated for product ID: {}", productId);
+
                     return ResponseEntity.ok(ProductMapper.INSTANCE.productToProductDTO(updatedStock));
                 })
+
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{productId}")
     public Mono<ResponseEntity<ProductDTO>> updateProductName(@PathVariable String productId, @Valid @RequestBody NewNameDTO newNameDTO) {
+
         logger.info("Request received to update product name for ID: {}", productId);
+
         return productService.updateProductName(productId, newNameDTO)
                 .map(updatedName -> {
                     logger.info("Product name updated for ID: {}", productId);
+
                     return ResponseEntity.ok(ProductMapper.INSTANCE.productToProductDTO(updatedName));
                 })
+
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{productId}")
     public Mono<ResponseEntity<Void>> deleteProduct(@PathVariable String productId) {
+
         logger.info("Request received to delete product with ID: {}", productId);
+
         return productService.deleteProductById(productId)
                 .then(Mono.fromRunnable(() -> logger.info("Product deleted successfully: {}", productId)))
                 .then(Mono.just(ResponseEntity.noContent().build()));

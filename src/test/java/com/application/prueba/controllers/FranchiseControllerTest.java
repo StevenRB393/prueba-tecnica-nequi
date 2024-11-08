@@ -124,21 +124,21 @@ public class FranchiseControllerTest {
 
         String franchiseId = "1";
 
-        ProductWithScoreDTO productWithScoreDTO1 = ProductWithScoreDTO.builder()
+        ProductWithStockDTO productWithStockDTO1 = ProductWithStockDTO.builder()
                 .productNameDTO("Product A")
                 .stockDTO(50)
                 .build();
 
-        ProductWithScoreDTO productWithScoreDTO2 = ProductWithScoreDTO.builder()
+        ProductWithStockDTO productWithStockDTO2 = ProductWithStockDTO.builder()
                 .productNameDTO("Product B")
                 .stockDTO(100)
                 .build();
 
-        List<ProductWithScoreDTO> productList = Arrays.asList(productWithScoreDTO1, productWithScoreDTO2);
+        List<ProductWithStockDTO> productList = Arrays.asList(productWithStockDTO1, productWithStockDTO2);
 
         when(franchiseService.findProductWithMaxStockByStore(franchiseId)).thenReturn(Mono.just(productList));
 
-        Mono<ResponseEntity<List<ProductWithScoreDTO>>> response = franchiseController.getProductWithMostStockByStore(franchiseId);
+        Mono<ResponseEntity<List<ProductWithStockDTO>>> response = franchiseController.getProductWithMostStockByStore(franchiseId);
 
         StepVerifier.create(response)
                 .consumeNextWith(entity -> {

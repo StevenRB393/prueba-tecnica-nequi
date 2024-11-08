@@ -2,7 +2,7 @@ package com.application.prueba.controllers;
 
 import com.application.prueba.dtos.FranchiseDTO;
 import com.application.prueba.dtos.NewNameDTO;
-import com.application.prueba.dtos.ProductWithScoreDTO;
+import com.application.prueba.dtos.ProductWithStockDTO;
 import com.application.prueba.dtos.StoreDTO;
 import com.application.prueba.models.Franchise;
 import com.application.prueba.mappers.FranchiseMapper;
@@ -34,85 +34,102 @@ public class FranchiseController {
 
     @GetMapping("/{franchiseId}")
     public Mono<ResponseEntity<FranchiseDTO>> getFranchiseById(@PathVariable String franchiseId) {
+
         logger.info("Request received to get franchise with ID: {}", franchiseId);
+
         return franchiseService.findFranchiseById(franchiseId)
                 .map(franchise -> {
                     logger.info("Franchise found: {}", franchiseId);
                     return ResponseEntity.ok(franchiseMapper.INSTANCE.franchiseToFranchiseDTO(franchise));
                 })
+
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
 
     @GetMapping
     public Flux<ResponseEntity<FranchiseDTO>> getAllFranchises() {
+
         logger.info("Request received to get all franchises");
+
         return franchiseService.findAllFranchises()
                 .map(franchise -> {
                     logger.info("Franchise found with ID: {}", franchise.getId());
                     return ResponseEntity.ok(franchiseMapper.franchiseToFranchiseDTO(franchise));
                 })
+
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
 
     @GetMapping("/{franchiseId}/products/most-stock")
-    public Mono<ResponseEntity<List<ProductWithScoreDTO>>> getProductWithMostStockByStore(@PathVariable String franchiseId) {
+    public Mono<ResponseEntity<List<ProductWithStockDTO>>> getProductWithMostStockByStore(@PathVariable String franchiseId) {
+
         logger.info("Request received to get products with most stock for franchise ID: {}", franchiseId);
 
         return franchiseService.findProductWithMaxStockByStore(franchiseId)
                 .defaultIfEmpty(Collections.emptyList()) // Si la lista está vacía, se retorna una lista vacía
                 .flatMap(products -> {
                     if (products.isEmpty()) {
-                        // Si la lista sigue vacía, retornamos NOT_FOUND
                         return Mono.just(ResponseEntity.notFound().build());
                     }
-                    // Si hay productos, retornamos OK con la lista de productos
                     return Mono.just(ResponseEntity.ok(products));
                 });
     }
 
-
-
     @PostMapping
     public Mono<ResponseEntity<FranchiseDTO>> saveFranchise(@Valid @RequestBody FranchiseDTO franchiseDTO) {
+
         logger.info("Request received to save a new franchise");
+
         return franchiseService.saveFranchise(franchiseDTO)
                 .map(savedFranchise -> {
                     logger.info("Franchise saved with ID: {}", savedFranchise.getId());
+
                     return ResponseEntity.ok(FranchiseMapper.INSTANCE.franchiseToFranchiseDTO(savedFranchise));
                 })
+
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
 
     @PostMapping("/{franchiseId}/stores")
     public Mono<ResponseEntity<FranchiseDTO>> addStoreToFranchise(@PathVariable String franchiseId, @Valid @RequestBody StoreDTO storeDTO) {
+
         logger.info("Request received to add a store to franchise ID: {}", franchiseId);
+
         return franchiseService.saveStoreByFranchise(franchiseId, storeDTO)
                 .map(franchise -> {
                     logger.info("Store added to franchise with ID: {}", franchiseId);
+
                     return ResponseEntity.ok(franchiseMapper.franchiseToFranchiseDTO(franchise));
                 })
+
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
 
     @PutMapping("/{franchiseId}")
     public Mono<ResponseEntity<Franchise>> updateFranchiseName(@PathVariable String franchiseId, @Valid @RequestBody NewNameDTO newNameDTO) {
+
         logger.info("Request received to update franchise name for ID: {}", franchiseId);
+
         return franchiseService.updateFranchiseName(franchiseId, newNameDTO)
                 .map(updatedFranchise -> {
                     logger.info("Franchise name updated for ID: {}", franchiseId);
+
                     return ResponseEntity.ok().body(updatedFranchise);
                 })
+
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
 
     @DeleteMapping("/{franchiseId}")
     public Mono<ResponseEntity<Void>> deleteFranchiseById(@PathVariable String franchiseId) {
+
         logger.info("Request received to delete franchise with ID: {}", franchiseId);
+
         return franchiseService.deleteFranchiseById(franchiseId)
                 .then(Mono.fromRunnable(() -> logger.info("Franchise deleted successfully: {}", franchiseId)))
                 .then(Mono.just(ResponseEntity.noContent().build()));

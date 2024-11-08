@@ -12,7 +12,7 @@ public interface FranchiseService {
 
     Flux<Franchise> findAllFranchises();
 
-    Mono<List<ProductWithScoreDTO>>findProductWithMaxStockByStore(String franchiseId);
+    Mono<List<ProductWithStockDTO>>findProductWithMaxStockByStore(String franchiseId);
 
     Mono<Franchise> saveFranchise(FranchiseDTO franchiseDTO);
 
