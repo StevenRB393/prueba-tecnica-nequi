@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -12,6 +13,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
 public class ProductDTO {
 
     @NotNull(message = "Id cannot be null")
