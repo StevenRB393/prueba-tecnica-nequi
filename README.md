@@ -59,7 +59,7 @@
 <li><strong>Producto</strong>: Cada producto tiene su id, un nombre y una cantidad de stock disponible en esa sucursal.</li>
 </ul>
 <p><a href="https://postimages.org/" target="_blank"><img src="https://i.postimg.cc/h47GvCqz/Captura-de-pantalla-2024-11-07-131347.png" border="0" alt="Captura-de-pantalla-2024-11-07-131347"></a></p>
-<p><strong>Colecciones en MongoDB</strong>:</p>
+<p><strong>Colecciones en MongoDB</strong></p>
 <ul>
 <li><code>franchises</code>: Colección que almacena la información de las franquicias.</li>
 <li><code>stores</code>: Colección que almacena las sucursales asociadas a cada franquicia.</li>
@@ -70,6 +70,7 @@
 <li>La asociación entre <strong>Franchise</strong> y <strong>Store</strong> es unidireccional, donde Franchise puede acceder a Store, pero no viceversa.</li>
 <li>La asociación entre <strong>Store</strong> y <strong>Product</strong> también es unidireccional, donde Store puede acceder a Product, pero no al revés.</li>
 </ul>
+<p><strong>Importante:</strong> En este diseño, los productos están embebidos dentro del documento de cada tienda, lo que significa que no existen como documentos independientes en una colección separada. Esto establece una relación unidireccional e independiente, donde los productos solo pertenecen a una tienda específica</p>
 <h1 id="guía-de-instalación">Guía de instalación</h1>
 <h2 id="requisitos-previos">Requisitos previos:</h2>
 <ul>
@@ -294,6 +295,15 @@ public class FranchiseController {
         throw new BadRequestException("Product ID must not be null or empty");  
     }  
 }
+</code></pre>
+<h2 id="uso-del-patrón-builder">- Uso del patrón Builder</h2>
+<p>El uso del patrón <strong>Builder</strong> permite crear objetos complejos de manera escalonada y controlada, separando la construcción de un objeto de su representación final. Este patrón es útil cuando un objeto tiene muchos atributos o configuraciones opcionales, evitando un constructor con demasiados parámetros.</p>
+<p><strong>¿En qué beneficia?</strong> Facilita la adición de nuevos atributos sin modificar el código cliente, promoviendo la inmutabilidad y seguridad de los objetos.</p>
+<pre><code>Franchise expectedFranchise = Franchise.builder()  
+        .id(franchiseId)  
+        .franchiseName("Franchise One")  
+        .storeList(new ArrayList&lt;&gt;())  
+        .build();
 </code></pre>
 <h2 id="configuración-externalizada-con-variables-de-entorno">- Configuración Externalizada con Variables de Entorno</h2>
 <p>La configuración externalizada con variables de entorno permite separar la configuración del código fuente, almacenando parámetros como credenciales y URLs en el entorno de ejecución.</p>
