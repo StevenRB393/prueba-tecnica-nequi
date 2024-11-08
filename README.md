@@ -47,7 +47,7 @@
 <li><code>models/</code>: Clases que representan los objetos de dominio de la aplicación, mapeados a las colecciones de MongoDB.</li>
 <li><code>repositories/</code>: Interfaces de repositorio para el acceso a los datos.</li>
 <li><code>services/</code>: Servicios que contienen la lógica de negocio.</li>
-<li><code>validations/</code>: Clases o componentes encargados de realizar validaciones específicas en los métodos de los servicios.</li>
+<li><code>validators/</code>: Clases o componentes encargados de realizar validaciones específicas en los métodos de los servicios.</li>
 <li><code>configs/</code>: Configuraciones generales de la aplicación.</li>
 </ul>
 <h2 id="base-de-datos">Base de datos</h2>
