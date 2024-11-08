@@ -1,11 +1,9 @@
 package com.application.prueba.services;
 
 import com.application.prueba.dtos.*;
-import com.application.prueba.entities.Franchise;
-import com.application.prueba.entities.Store;
+import com.application.prueba.models.Franchise;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
 import java.util.List;
 
 public interface FranchiseService {

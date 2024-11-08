@@ -3,7 +3,7 @@ package com.application.prueba.controllers;
 import com.application.prueba.dtos.NewNameDTO;
 import com.application.prueba.dtos.ProductDTO;
 import com.application.prueba.dtos.StoreDTO;
-import com.application.prueba.entities.Store;
+import com.application.prueba.models.Store;
 import com.application.prueba.mappers.StoreMapper;
 import com.application.prueba.services.StoreService;
 import io.swagger.v3.oas.annotations.tags.Tag;

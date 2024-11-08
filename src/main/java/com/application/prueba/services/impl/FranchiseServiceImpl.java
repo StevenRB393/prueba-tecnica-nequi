@@ -1,15 +1,13 @@
 package com.application.prueba.services.impl;
 
 import com.application.prueba.dtos.*;
-import com.application.prueba.entities.Franchise;
-import com.application.prueba.entities.Product;
-import com.application.prueba.entities.Store;
-import com.application.prueba.exceptions.NotFoundException;
+import com.application.prueba.models.Franchise;
+import com.application.prueba.models.Product;
+import com.application.prueba.models.Store;
 import com.application.prueba.mappers.FranchiseMapper;
-import com.application.prueba.mappers.StoreMapper;
 import com.application.prueba.repositories.FranchiseRepository;
 import com.application.prueba.services.FranchiseService;
-import com.application.prueba.utils.FranchiseValidations;
+import com.application.prueba.validators.FranchiseValidations;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;

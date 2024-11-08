@@ -3,7 +3,7 @@ package com.application.prueba.services;
 import com.application.prueba.dtos.NewNameDTO;
 import com.application.prueba.dtos.NewStockDTO;
 import com.application.prueba.dtos.ProductDTO;
-import com.application.prueba.entities.Product;
+import com.application.prueba.models.Product;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

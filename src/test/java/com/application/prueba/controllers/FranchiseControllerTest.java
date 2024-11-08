@@ -1,9 +1,9 @@
 package com.application.prueba.controllers;
 
 import com.application.prueba.dtos.*;
-import com.application.prueba.entities.Franchise;
-import com.application.prueba.entities.Product;
-import com.application.prueba.entities.Store;
+import com.application.prueba.models.Franchise;
+import com.application.prueba.models.Product;
+import com.application.prueba.models.Store;
 import com.application.prueba.mappers.FranchiseMapper;
 import com.application.prueba.services.FranchiseService;
 import org.junit.jupiter.api.Test;

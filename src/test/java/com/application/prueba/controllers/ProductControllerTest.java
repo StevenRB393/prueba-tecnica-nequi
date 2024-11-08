@@ -3,7 +3,7 @@ package com.application.prueba.controllers;
 import com.application.prueba.dtos.NewNameDTO;
 import com.application.prueba.dtos.NewStockDTO;
 import com.application.prueba.dtos.ProductDTO;
-import com.application.prueba.entities.Product;
+import com.application.prueba.models.Product;
 import com.application.prueba.mappers.ProductMapper;
 import com.application.prueba.services.ProductService;
 import org.junit.jupiter.api.Test;

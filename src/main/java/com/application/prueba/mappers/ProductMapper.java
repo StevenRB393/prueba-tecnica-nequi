@@ -1,13 +1,11 @@
 package com.application.prueba.mappers;
 
 import com.application.prueba.dtos.ProductDTO;
-import com.application.prueba.entities.Product;
+import com.application.prueba.models.Product;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
-
-import java.util.List;
 
 @Mapper
 public interface ProductMapper {
@@ -19,12 +17,6 @@ public interface ProductMapper {
     @Mapping(source = "stock", target = "stockDTO")
     ProductDTO productToProductDTO(Product product);
 
-    List<ProductDTO> productListToProductDTOList(List<Product> productList);
-
     @InheritInverseConfiguration
     Product productDTOToProduct(ProductDTO productDTO);
-
-
-    List<Product> productDTOListToProductList(List<ProductDTO> productDTOList);
-
 }

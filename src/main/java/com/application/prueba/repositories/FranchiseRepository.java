@@ -1,6 +1,6 @@
 package com.application.prueba.repositories;
 
-import com.application.prueba.entities.Franchise;
+import com.application.prueba.models.Franchise;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;
 

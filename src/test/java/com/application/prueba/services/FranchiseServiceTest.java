@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 import com.application.prueba.dtos.*;
-import com.application.prueba.entities.Franchise;
+import com.application.prueba.models.Franchise;
 import com.application.prueba.repositories.FranchiseRepository;
 import com.application.prueba.services.impl.FranchiseServiceImpl;
 import org.junit.jupiter.api.Test;

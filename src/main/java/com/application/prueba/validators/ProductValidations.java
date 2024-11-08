@@ -1,4 +1,4 @@
-package com.application.prueba.utils;
+package com.application.prueba.validators;
 
 import com.application.prueba.dtos.NewNameDTO;
 import com.application.prueba.dtos.NewStockDTO;

@@ -4,7 +4,7 @@ import com.application.prueba.dtos.FranchiseDTO;
 import com.application.prueba.dtos.NewNameDTO;
 import com.application.prueba.dtos.ProductWithScoreDTO;
 import com.application.prueba.dtos.StoreDTO;
-import com.application.prueba.entities.Franchise;
+import com.application.prueba.models.Franchise;
 import com.application.prueba.mappers.FranchiseMapper;
 import com.application.prueba.services.FranchiseService;
 import io.swagger.v3.oas.annotations.tags.Tag;

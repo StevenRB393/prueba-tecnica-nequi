@@ -4,7 +4,7 @@ import static org.mockito.Mockito.*;
 import com.application.prueba.dtos.NewNameDTO;
 import com.application.prueba.dtos.NewStockDTO;
 import com.application.prueba.dtos.ProductDTO;
-import com.application.prueba.entities.Product;
+import com.application.prueba.models.Product;
 import com.application.prueba.repositories.ProductRepository;
 import com.application.prueba.services.impl.ProductServiceImpl;
 import org.junit.jupiter.api.Test;
