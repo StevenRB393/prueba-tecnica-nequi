@@ -15,8 +15,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
-import java.util.Arrays;
-import java.util.List;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -30,8 +28,13 @@ public class ProductServiceTest {
 
     @Test
     void testFindProductById() {
+
         String productId = "product1";
-        Product product = new Product(productId, "Product One", 10);
+        Product product = Product.builder()
+                .id(productId)
+                .productName("Product One")
+                .stock(10)
+                .build();
 
         when(productRepository.findById(productId)).thenReturn(Mono.just(product));
 
@@ -39,14 +42,24 @@ public class ProductServiceTest {
 
         StepVerifier.create(result)
                 .expectNextMatches(p -> p.getId().equals(productId) && p.getProductName().equals("Product One"))
+
                 .verifyComplete();
     }
 
     @Test
     void testFindAllProducts() {
-        Product product1 = new Product("product1", "Product One", 10);
-        Product product2 = new Product("product2", "Product Two", 20);
-        List<Product> productList = Arrays.asList(product1, product2);
+
+        Product product1 = Product.builder()
+                .id("product1")
+                .productName("Product One")
+                .stock(10)
+                .build();
+
+        Product product2 = Product.builder()
+                .id("product2")
+                .productName("Product Two")
+                .stock(20)
+                .build();
 
         when(productRepository.findAll()).thenReturn(Flux.just(product1, product2));
 
@@ -55,13 +68,24 @@ public class ProductServiceTest {
         StepVerifier.create(result)
                 .expectNext(product1)
                 .expectNext(product2)
+
                 .verifyComplete();
     }
 
     @Test
     void testSaveProduct() {
-        ProductDTO productDTO = new ProductDTO("product1", "Product One", 10);
-        Product product = new Product(productDTO.getIdDTO(), productDTO.getProductNameDTO(), productDTO.getStockDTO());
+
+        ProductDTO productDTO = ProductDTO.builder()
+                .idDTO("product1")
+                .productNameDTO("Product One")
+                .stockDTO(10)
+                .build();
+
+        Product product = Product.builder()
+                .id(productDTO.getIdDTO())
+                .productName(productDTO.getProductNameDTO())
+                .stock(productDTO.getStockDTO())
+                .build();
 
         when(productRepository.save(any(Product.class))).thenReturn(Mono.just(product));
 
@@ -69,14 +93,24 @@ public class ProductServiceTest {
 
         StepVerifier.create(result)
                 .expectNextMatches(p -> p.getIdDTO().equals("product1") && p.getProductNameDTO().equals("Product One"))
+
                 .verifyComplete();
     }
 
     @Test
     void testModifyProductStock() {
+
         String productId = "product1";
-        NewStockDTO newStockDTO = new NewStockDTO(15);
-        Product existingProduct = new Product(productId, "Product Name", 10);
+
+        NewStockDTO newStockDTO = NewStockDTO.builder()
+                .newStockDTO(15)
+                .build();
+
+        Product existingProduct = Product.builder()
+                .id(productId)
+                .productName("Product Name")
+                .stock(10)
+                .build();
 
         when(productRepository.findById(productId)).thenReturn(Mono.just(existingProduct));
         when(productRepository.save(any(Product.class))).thenReturn(Mono.just(new Product(productId, "Product Name", newStockDTO.getNewStockDTO())));
@@ -85,14 +119,24 @@ public class ProductServiceTest {
 
         StepVerifier.create(result)
                 .expectNextMatches(p -> p.getStock() == newStockDTO.getNewStockDTO())
+
                 .verifyComplete();
     }
 
     @Test
     void testUpdateProductName() {
+
         String productId = "product1";
-        NewNameDTO newNameDTO = new NewNameDTO("New Product Name");
-        Product existingProduct = new Product(productId, "Product One", 10);
+        NewNameDTO newNameDTO = NewNameDTO.builder()
+                .newNameDTO("New Product Name")
+                .build();
+
+        Product existingProduct = Product.builder()
+                .id(productId)
+                .productName("Product One")
+                .stock(10)
+                .build();
+
 
         when(productRepository.findById(productId)).thenReturn(Mono.just(existingProduct));
         when(productRepository.save(any(Product.class))).thenReturn(Mono.just(new Product(productId, newNameDTO.getNewNameDTO(), 10)));
@@ -107,6 +151,7 @@ public class ProductServiceTest {
 
     @Test
     void testDeleteProductById() {
+
         String productId = "product1";
 
         when(productRepository.deleteById(productId)).thenReturn(Mono.empty());
@@ -114,7 +159,7 @@ public class ProductServiceTest {
         Mono<Void> result = productService.deleteProductById(productId);
 
         StepVerifier.create(result)
+
                 .verifyComplete();
     }
-
 }
